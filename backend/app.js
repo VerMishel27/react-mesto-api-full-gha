@@ -24,8 +24,9 @@ app.options('*', cors());
 const { FoundError } = require('./middlewares/foundError');
 const { errorHandler } = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { DB_ADDRESS } = require('./constants/constants');
 
-const { PORT, DB_ADDRESS } = process.env;
+const { PORT = 3001 } = process.env;
 
 app.use(express.json());
 
