@@ -29,7 +29,7 @@ const { PORT = 3000 } = process.env;
 
 app.use(express.json());
 
-mongoose.connect(process.env.NODE_ENV !== 'production' ? DB_ADDRESS : 'mongodb://127.0.0.1:27017/mestodb', {
+mongoose.connect(DB_ADDRESS, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
