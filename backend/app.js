@@ -3,28 +3,31 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-const cors = require('cors');
 
 const router = require('./routes');
 
 const app = express();
 
-app.use(cors({
-  credentials: true,
-  maxAge: 30,
-  origin: [
-    'http://localhost:3000',
-    'http://mesto-web.nomoredomainsmonster.ru',
-    'https://mesto-web.nomoredomainsmonster.ru',
-  ],
-}));
+// app.use(cors({
+//   credentials: true,
+//   maxAge: 30,
+//   origin: [
+//     'http://localhost:3000',
+//     'http://mesto-web.nomoredomainsmonster.ru',
+//     'https://mesto-web.nomoredomainsmonster.ru',
+//     'https://api.mesto-web.nomoredomainsmonster.ru'
+//   ],
+// }));
 
-app.options('*', cors());
+// app.options('*', cors());
 
 const { FoundError } = require('./middlewares/foundError');
 const { errorHandler } = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { DB_ADDRESS } = require('./constants/constants');
+const { cors } = require('./middlewares/cors');
+
+app.use(cors);
 
 const { PORT = 3000 } = process.env;
 
