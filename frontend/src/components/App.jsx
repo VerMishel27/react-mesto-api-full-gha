@@ -65,7 +65,6 @@ function App() {
       api
       .addLike(card._id, !isLiked)
       .then((newCard) => {
-        console.log(newCard);
         setCurrentCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
@@ -74,11 +73,9 @@ function App() {
         console.log(err);
       });
     } else {
-      console.log('Есть лайк')
       api
       .delLike(card._id, isLiked)
       .then((newCard) => {
-        console.log(newCard);
         setCurrentCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
