@@ -15,7 +15,7 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://mesto-web.nomoredomainsmonster.ru',
-    'https://mesto-web.nomoredomainsmonster.ru'
+    'https://mesto-web.nomoredomainsmonster.ru',
   ],
 }));
 
@@ -26,7 +26,7 @@ const { errorHandler } = require('./middlewares/error-handler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { DB_ADDRESS } = require('./constants/constants');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 app.use(express.json());
 

@@ -83,7 +83,12 @@ const updateInfoUser = async (req, res, next) => {
       if (!user) {
         throw new FoundError('Пользователь с указанным _id не найден.', 404);
       }
-      return res.status(200).send({ name: user.name, about: user.about, avatar: user.avatar, _id: user._id });
+      return res.status(200).send({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+      });
     })
     .catch((error) => {
       if (error.name === 'ValidationError') {
@@ -108,7 +113,12 @@ const updateAvatarUser = async (req, res, next) => {
       if (!user) {
         throw new FoundError('Пользователь с указанным _id не найден.', 404);
       }
-      return res.status(200).send({ name: user.name, about: user.about, avatar: user.avatar, _id: user._id });
+      return res.status(200).send({
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+      });
     })
     .catch((error) => {
       if (error.name === 'ValidationError') {
