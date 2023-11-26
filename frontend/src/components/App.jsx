@@ -61,9 +61,11 @@ function App() {
     const isLiked = card.likes.some((id) => id === currentUser._id);
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api
+    if(!isLiked) {
+      api
       .addLike(card._id, !isLiked)
       .then((newCard) => {
+        console.log(newCard);
         setCurrentCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
         );
@@ -71,6 +73,20 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      console.log('Есть лайк')
+      api
+      .delLike(card._id, isLiked)
+      .then((newCard) => {
+        console.log(newCard);
+        setCurrentCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   }
 
   useEffect(() => {
@@ -228,6 +244,7 @@ function App() {
         if (res.token) {
           setLoggedIn(true);
           localStorage.setItem("jwt", res.token);
+          auth(res.token)
           setDisplay(false)
           navigate("/cards");
         }

@@ -1,4 +1,5 @@
 export const BASE_URL = 'https://api.mesto-web.nomoredomainsmonster.ru';
+//export const BASE_URL = 'http://localhost:3000';
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -41,7 +42,7 @@ export const getContent = (jwt) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
+      authorization: `Bearer ${jwt}`,
     },
   })
     .then((res) => res.json())

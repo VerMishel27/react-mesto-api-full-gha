@@ -8,18 +8,18 @@ const cors = require('cors');
 const router = require('./routes');
 
 const app = express();
+app.use(cors())
+// app.use(cors({
+//   credentials: true,
+//   maxAge: 30,
+//   origin: [
+//     'http://localhost:3000',
+//     'http://mesto-web.nomoredomainsmonster.ru',
+//     'https://mesto-web.nomoredomainsmonster.ru'
+//   ],
+// }));
 
-app.use(cors({
-  credentials: true,
-  maxAge: 30,
-  origin: [
-    'http://localhost:3000',
-    'http://mesto-web.nomoredomainsmonster.ru',
-    'https://mesto-web.nomoredomainsmonster.ru'
-  ],
-}));
-
-app.options('*', cors());
+// app.options('*', cors());
 
 const { FoundError } = require('./middlewares/foundError');
 const { errorHandler } = require('./middlewares/error-handler');

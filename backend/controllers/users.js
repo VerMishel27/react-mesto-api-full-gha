@@ -134,7 +134,7 @@ const loginUser = async (req, res, next) => {
 
     const token = generateToken({ _id: userAdmin._id, email: userAdmin.email }, process.env.NODE_ENV !== 'production' ? JWT_SECRET : 'dev_secret');
 
-    return res.status(200).send({ token, email: userAdmin.email });
+    return res.status(200).send({ token });
   } catch (error) {
     if (error.name === 'ValidationError') {
       return next(new FoundError('Переданы некорректные данные при создании пользователя.', 400));
