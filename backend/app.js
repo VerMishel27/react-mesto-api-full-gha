@@ -29,7 +29,7 @@ const { cors } = require('./middlewares/cors');
 
 app.use(cors);
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, DB_ADDRESS } = process.env;
 
 app.use(express.json());
 

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { NODE_ENV, JWT_SECRET } = process.env;
 const { FoundError } = require('./foundError');
 
 const auth = (req, res, next) => {
@@ -11,7 +12,7 @@ const auth = (req, res, next) => {
     }
 
     const validTocken = token.replace('Bearer ', '');
-    payload = jwt.verify(validTocken, process.env.NODE_ENV !== 'production' ? process.env.JWT_SECRET : 'dev_secret');
+    payload = jwt.verify(validTocken, NODE_ENV !== 'production' ? JWT_SECRET : 'dev_secret');
   } catch (error) {
     if (error.name === 'JsonWebTokenError') {
       next(new FoundError('С токеном что-то не так!', 401));

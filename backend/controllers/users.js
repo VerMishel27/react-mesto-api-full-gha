@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const { generateToken } = require('../utils/jwt');
 
@@ -142,7 +143,7 @@ const loginUser = async (req, res, next) => {
       throw new FoundError('Не правильные email или пароль!', 401);
     }
 
-    const token = generateToken({ _id: userAdmin._id, email: userAdmin.email }, process.env.NODE_ENV !== 'production' ? process.env.JWT_SECRET : 'dev_secret');
+    const token = generateToken({ _id: userAdmin._id, email: userAdmin.email }, NODE_ENV !== 'production' ? JWT_SECRET : 'dev_secret');
 
     return res.status(200).send({ token });
   } catch (error) {
